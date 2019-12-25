@@ -1,6 +1,6 @@
 Name:     lm_sensors
 Version:  3.4.0
-Release:  18
+Release:  19
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -21,7 +21,8 @@ Patch6000:pwmconfig-Fix-a-sed-expression.patch
 Requires:      kmod, systemd-units
 BuildRequires: kernel-headers >= 2.2.16, bison, libsysfs-devel, flex, gawk
 BuildRequires: perl-generators, rrdtool-devel, gcc
-provides:      %{name}-libs = %{version}-%{release}
+Provides:      %{name}-libs
+Obsoletes:     %{name}-libs
 
 %description
 lm_sensors (Linux-monitoring sensors), is a free open source software-tool for Linux
@@ -159,6 +160,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Thu Dec 12 2019 openEuler Buildteam <buildteam@openeuler.org> - 3.4.0-19
+- Fix upgrade problem
+
 * Tue Apr 16 2019 yuejiayan<yuejiayan@huawei.com> - 3.4.0-18
 - Type:bugfix
 - ID:NA
