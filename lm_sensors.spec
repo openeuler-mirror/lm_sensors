@@ -1,6 +1,6 @@
 Name:     lm_sensors
 Version:  3.4.0
-Release:  19
+Release:  20
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -8,6 +8,7 @@ Summary:  Linux-monitoring sensors
 License:  LGPLv2+ and GPLv2+ and Verbatim and MIT
 URL:      http://github.com/groeck/lm-sensors
 
+# Source0 is https://github.com/lm-sensors/lm-sensors/archive/70f7e0848410b9ca4dde7abff669bbbecbf137e0.zip
 Source0:  lm-sensors-70f7e0848410b9ca4dde7abff669bbbecbf137e0.tar.gz
 Source1:  lm_sensors.sysconfig
 Source2:  sensord.sysconfig
@@ -160,6 +161,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Mon Dec 30 2019 openEuler Buildteam <buildteam@openeuler.org> - 3.4.0-20
+- update spec
+
 * Thu Dec 12 2019 openEuler Buildteam <buildteam@openeuler.org> - 3.4.0-19
 - Fix upgrade problem
 
