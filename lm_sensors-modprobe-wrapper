@@ -2,7 +2,11 @@
 if [ $# -ne 0 ]; then
   /usr/sbin/modprobe -ab "$@"
 else
-  echo "No sensors with loadable kernel modules configured."
-  echo "Please, run 'sensors-detect' as root in order to search for available sensors."
-  exit 1
+  if [ `/usr/bin/sensors -s` ]; then
+    echo "No sensors with loadable kernel modules configured."
+    echo "Please, run 'sensors-detect' as root in order to search for available sensors."
+    exit 1
+  else
+    echo "you can run 'sensors-detect' as root in order to search for more available sensors."
+  fi
 fi

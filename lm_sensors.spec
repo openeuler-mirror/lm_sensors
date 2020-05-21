@@ -1,15 +1,17 @@
+%define git_version %(echo %{version} |sed -e 's/\\./-/g')
+
 Name:     lm_sensors
-Version:  3.4.0
-Release:  21
+Version:  3.6.0
+Release:  1
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
 # and others are licensed by GPLv2+ or LGPLv2+
 License:  LGPLv2+ and GPLv2+ and Verbatim and MIT
-URL:      http://github.com/groeck/lm-sensors
+URL:      http://github.com/lm-sensors/lm-sensors
 
-# Source0 is https://github.com/lm-sensors/lm-sensors/archive/70f7e0848410b9ca4dde7abff669bbbecbf137e0.zip
-Source0:  lm-sensors-70f7e0848410b9ca4dde7abff669bbbecbf137e0.tar.gz
+#from https://github.com/lm-sensors/lm-sensors/archive/V%{git_version}/lm-sensors-%{git_version}.tar.gz
+Source0:  lm-sensors-%{git_version}.tar.gz
 Source1:  lm_sensors.sysconfig
 Source2:  sensord.sysconfig
 Source3:  lm_sensors-modprobe-wrapper
@@ -17,11 +19,11 @@ Source4:  lm_sensors-modprobe-r-wrapper
 Source5:  sensord.service
 Source6:  sensord-service-wrapper
 Source7:  lm_sensors.service
-Patch6000:pwmconfig-Fix-a-sed-expression.patch
 
 Requires:      kmod, systemd-units
 BuildRequires: kernel-headers >= 2.2.16, bison, libsysfs-devel, flex, gawk
 BuildRequires: perl-generators, rrdtool-devel, gcc
+BuildRequires: lm_sensors
 Provides:      %{name}-libs
 Obsoletes:     %{name}-libs
 
@@ -61,7 +63,7 @@ Summary:  Help information for user
 Help information for user
 
 %prep
-%autosetup -n lm-sensors-70f7e0848410b9ca4dde7abff669bbbecbf137e0 -p1
+%autosetup -n lm-sensors-%{git_version} -p1
 rm -f prog/init/sysconfig-lm_sensors-convert prog/hotplug/unhide_ICH_SMBus
 mv prog/init/README prog/init/README.initscripts
 chmod -x prog/init/fancontrol.init
@@ -79,6 +81,9 @@ sed -i "s|\@WRAPPER_DIR\@|%{_libexecdir}/%{name}|" lm_sensors.service
 %install
 %make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} MANDIR=%{_mandir} PROG_EXTRA=sensord \
   DESTDIR=$RPM_BUILD_ROOT BUILD_STATIC_LIB=0 user_install
+
+#Include previous ABI version for temporary binary compatibility
+cp -a %{_libdir}/libsensors.so.4* %{buildroot}%{_libdir}
 
 ln -s sensors.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5/sensors3.conf.5.gz
 
@@ -161,6 +166,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Thu May 21 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-1
+- update to version 3.6.0
+
 * Thu Jan 16 2020 openEuler Buildteam <buildteam@openeuler.org> - 3.4.0-21
 - revert package and turn off service file
 
