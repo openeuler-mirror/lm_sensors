@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  1
+Release:  2
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -166,6 +166,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Fri May 22 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-2
+- fix lm_sensors-modprobe-r-wrapper/lm_sensors-modprobe-wrapper scripts
+
 * Thu May 21 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-1
 - update to version 3.6.0
 
