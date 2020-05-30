@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  2
+Release:  3
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -23,7 +23,6 @@ Source7:  lm_sensors.service
 Requires:      kmod, systemd-units
 BuildRequires: kernel-headers >= 2.2.16, bison, libsysfs-devel, flex, gawk
 BuildRequires: perl-generators, rrdtool-devel, gcc
-BuildRequires: lm_sensors
 Provides:      %{name}-libs
 Obsoletes:     %{name}-libs
 
@@ -81,9 +80,6 @@ sed -i "s|\@WRAPPER_DIR\@|%{_libexecdir}/%{name}|" lm_sensors.service
 %install
 %make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} MANDIR=%{_mandir} PROG_EXTRA=sensord \
   DESTDIR=$RPM_BUILD_ROOT BUILD_STATIC_LIB=0 user_install
-
-#Include previous ABI version for temporary binary compatibility
-cp -a %{_libdir}/libsensors.so.4* %{buildroot}%{_libdir}
 
 ln -s sensors.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5/sensors3.conf.5.gz
 
@@ -166,6 +162,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Fri May 29 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-3
+- delete "Include previous ABI version for temporary binary compatibility"
+
 * Fri May 22 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-2
 - fix lm_sensors-modprobe-r-wrapper/lm_sensors-modprobe-wrapper scripts
 
