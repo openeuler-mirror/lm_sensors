@@ -1,0 +1,4 @@
+version_control: github
+src_repo: lm_sensors/lm_sensors
+tag_prefix: ^V
+seperator: -
