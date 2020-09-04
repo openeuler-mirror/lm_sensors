@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  1
+Release:  2
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -11,7 +11,7 @@ License:  LGPLv2+ and GPLv2+ and Verbatim and MIT
 URL:      http://github.com/lm-sensors/lm-sensors
 
 #from https://github.com/lm-sensors/lm-sensors/archive/V%{git_version}/lm-sensors-%{git_version}.tar.gz
-Source0:  lm-sensors-%{git_version}.tar.gz
+Source0:  https://github.com/lm-sensors/lm-sensors/archive/V%{git_version}/lm-sensors-%{git_version}.tar.gz
 Source1:  lm_sensors.sysconfig
 Source2:  sensord.sysconfig
 Source3:  lm_sensors-modprobe-wrapper
@@ -162,6 +162,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Fri Sep 04 2020 xinghe <xinghe1@huawei.com> - 3.6.0-2
+- fix source0 download
+
 * Thu May 28 2020 Chunsheng Luo <luochunsheng@huawei.com> - 3.6.0-1
 - update to version 3.6.0
 
