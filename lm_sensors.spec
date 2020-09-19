@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  4
+Release:  5
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -119,14 +119,6 @@ fi
 %postun
 %systemd_postun_with_restart lm_sensors.service
 
-# ==== sensord ===
-#%post sensord
-#%systemd_post sensord.service
-#%preun sensord
-#%systemd_preun sensord.service
-#%postun sensord
-#%systemd_postun_with_restart sensord.service
-
 # ===== libs =====
 %ldconfig_scriptlets
 
@@ -162,6 +154,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Sat Sep 19 2020 xinghe <xinghe1@huawei.com> - 3.6.0-5
+- fix unistall failure 
+
 * Fri Sep 04 2020 xinghe <xinghe1@huawei.com> - 3.6.0-4
 - fix source0 download
 
