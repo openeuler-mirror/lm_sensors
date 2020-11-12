@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  2
+Release:  3
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -20,6 +20,7 @@ Source5:  sensord.service
 Source6:  sensord-service-wrapper
 Source7:  lm_sensors.service
 
+Recommends: %{name}-help = %{version}-%{release}
 Requires:      kmod, systemd-units
 BuildRequires: kernel-headers >= 2.2.16, bison, libsysfs-devel, flex, gawk
 BuildRequires: perl-generators, rrdtool-devel, gcc
@@ -154,6 +155,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Thu Nov 12 2020 xinghe <xinghe1@huawei.com> - 3.6.0-3
+- add help for Recommends
+
 * Sat Sep 19 2020 xinghe <xinghe1@huawei.com> - 3.6.0-2
 - fix uninstall fialure
 
