@@ -2,16 +2,18 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  3
+Release:  4
 Summary:  Linux-monitoring sensors
-# lib/libsensors.3 is licensed Verbatim
-# dist-git files are licensed MIT
-# and others are licensed by GPLv2+ or LGPLv2+
-License:  LGPLv2+ and GPLv2+ and Verbatim and MIT
+
+# The library (libsensors) is released under the GNU Lesser 
+# License (LGPL), as included in the file COPYING.LGPL. The 
+# package may be distributed according to the GNU General Pu
+# (GPL), as included in the file COPYING.                   
+License:  LGPL and GPL
 URL:      http://github.com/lm-sensors/lm-sensors
 
-#from https://github.com/lm-sensors/lm-sensors/archive/V%{git_version}/lm-sensors-%{git_version}.tar.gz
-Source0:  lm-sensors-%{git_version}.tar.gz
+#from https://codeload.github.com/lm-sensors/lm-sensors/tar.gz/V3-6-0
+Source0:  https://codeload.github.com/lm-sensors/lm-sensors/tar.gz/V3-6-0#/lm-sensors-3-6-0.tar.gz
 Source1:  lm_sensors.sysconfig
 Source2:  sensord.sysconfig
 Source3:  lm_sensors-modprobe-wrapper
@@ -35,8 +37,7 @@ humidity, and fans. It can also detect chassis intrusions.
 %package devel
 Summary: lm_sensors's development files
 Requires: %{name}-libs = %{version}-%{release}
-#only lib/libsensors.3 is licensed Verbatim.
-License: LGPLv2+ and Verbatim
+License:  LGPL and GPL
 
 %description devel
 libsensors offers a way for applications to access the hardware
@@ -48,9 +49,7 @@ sense to the user.
 %package sensord
 Summary:  hardware health monitoring daemon
 Requires: %{name} = %{version}-%{release}
-# only prog/sensord/sensord.8 is licensed Verbatim.
-# dist-git files are licensed MIT.
-License:  GPLv2+ and Verbatim and MIT
+License:  LGPL and GPL
 
 %description sensord
 Daemon that periodically logs sensor readings to syslog or a round-robin
@@ -155,6 +154,13 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Thu Dec 17 2020 wuxu <wuxu.wu@hotmail.com> - 3.6.0-4
+- update license consistent with upstream community:
+  The library (libsensors) is released under the GNU Lesser General Public
+  License (LGPL), as included in the file COPYING.LGPL. The rest of this
+  package may be distributed according to the GNU General Public License
+  (GPL), as included in the file COPYING.
+
 * Thu Nov 12 2020 xinghe <xinghe1@huawei.com> - 3.6.0-3
 - add help for Recommends
 
