@@ -2,7 +2,7 @@
 
 Name:     lm_sensors
 Version:  3.6.0
-Release:  5
+Release:  6
 Summary:  Linux-monitoring sensors
 # lib/libsensors.3 is licensed Verbatim
 # dist-git files are licensed MIT
@@ -19,6 +19,7 @@ Source4:  lm_sensors-modprobe-r-wrapper
 Source5:  sensord.service
 Source6:  sensord-service-wrapper
 Source7:  lm_sensors.service
+Patch0:   lm_sensors-fix-cc.patch
 
 Requires:      kmod, systemd-units
 BuildRequires: kernel-headers >= 2.2.16, bison, libsysfs-devel, flex, gawk
@@ -162,6 +163,9 @@ fi
 %exclude %{_mandir}/man8/sensord.8.gz
 
 %changelog
+* Wed Apr 19 2023 Xiaoya Huang <huangxiaoya@iscas.ac.cn> - 3.6.0-6
+- Fix CC compiler support
+
 * Sat Sep 19 2020 xinghe <xinghe1@huawei.com> - 3.6.0-5
 - fix uninstall failure
 
