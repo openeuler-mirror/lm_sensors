@@ -1,0 +1,11 @@
+--- a/Makefile	2019-10-17 23:43:18.000000000 +0800
++++ b/Makefile	2023-04-19 20:50:34.250963171 +0800
+@@ -45,7 +45,7 @@
+ PREFIX := /usr/local
+ 
+ # Your C compiler
+-CC := gcc
++CC ?= gcc
+ 
+ # This is the directory where sensors3.conf will be installed, if no other
+ # configuration file is found
